@@ -22,9 +22,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 // commons csv API import statements
@@ -70,7 +72,10 @@ public class LoginController {
     private TitledPane registerPane;
     @FXML
     private Accordion window;   
-    
+    @FXML
+    private ProgressBar strengthBar;
+    @FXML
+    private PasswordField confirmPassword;
     
     // location & name of stored account data:
     private static final String ACCOUNT_CSV_FILE = "./accounts.csv";
@@ -138,8 +143,39 @@ public class LoginController {
         return accountList;
     }
   
-    
-    
+    @FXML
+    void checkStrength(KeyEvent event) {
+
+        switch(passwordStrength(passwordFieldRegister.getText())){
+            
+            case 0: 
+                strengthBar.setStyle("-fx-accent: #ff1808;");
+                strengthBar.setProgress(0);
+                break;
+                
+            case 25:
+                strengthBar.setStyle("-fx-accent: #ff1808;");
+                strengthBar.setProgress(25);
+                break;
+                
+            case 50:
+                strengthBar.setStyle("-fx-accent: #c2731a;");
+                strengthBar.setProgress(50);
+                break;
+                
+            case 75:
+                strengthBar.setStyle("-fx-accent: #cee08a;");
+                strengthBar.setProgress(75);
+                break;
+                
+            case 100:
+                strengthBar.setStyle("-fx-accent: #27BB9A;");
+                strengthBar.setProgress(100);
+                break;
+                
+        }
+        
+    }
     
     @FXML
     void createAccount(ActionEvent event) throws IOException {
@@ -157,7 +193,15 @@ public class LoginController {
                 || occupationField.getText().isEmpty()) {
             alert.showAndWait();
             
-        } else {
+        } else if (passwordFieldRegister.getText().equals(confirmPassword.getText())){             
+                alert.setContentText("Passwords do not match!");
+                alert.showAndWait();
+            
+        } else if (strengthBar.getProgress() < 100) {
+                alert.setContentText("Password does not meet standards.");
+                alert.showAndWait();
+            
+        }else {
             String fullName = nameField.getText();
             String username = usernameFieldRegister.getText();
             String password = passwordFieldRegister.getText();
@@ -185,11 +229,7 @@ public class LoginController {
         }
         
 
-        
-        
-    }
-
-    
+    } 
     
     @FXML
     void login(ActionEvent event) throws IOException {
@@ -227,6 +267,43 @@ public class LoginController {
     }
     
     
+    
+    private int passwordStrength(String password) {
+        
+        int strengthPercent = 0;
+        
+        boolean isAtLeast8   = password.length() >= 8; //Checks for at least 8 characters
+        boolean hasSpecial   = !password.matches("[A-Za-z0-9 ]*"); //Checks at least one char is not alpha numeric
+        boolean hasUpper = false;
+        boolean hasLower = false;
+        boolean hasNumber = false;
+        
+        for ( int i = 0; i < password.length(); i++ ) {
+            
+            Character ch = password.charAt(i);
+            
+            if (Character.isLowerCase(ch)) hasLower = true;
+            
+            if (Character.isUpperCase(ch)) hasUpper = true;
+            
+            if (Character.isDigit(ch)) hasNumber = true;
+        }
+        
+        if (isAtLeast8) strengthPercent += 25;
+             
+ 
+        if (hasSpecial) strengthPercent += 25;
+        
+        
+        if (hasUpper && hasLower) strengthPercent += 25;
+        
+        
+        if (hasNumber) strengthPercent += 25;
+        
+        
+        return strengthPercent;
+        
+    }
     
     
     // Verifies the user credentials match user in the database
