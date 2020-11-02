@@ -16,7 +16,7 @@ public class LoanApp {
     private Account user; // active user
     private String loanType; // used to identify loan type (i.e. auto, personal)
     private int personalInfoCredit; // given credit for personal information
-    private List<String>maritalStatus; // marital status attributes
+    private String maritalStatus; // marital status attributes
     private String education; // User-identified education
     private boolean housingStatus; // if housingStatus = true, the user is a home owner
     private int workInfoCredit; // given credit for work information
@@ -26,9 +26,27 @@ public class LoanApp {
     private String loanStatus; // the status of the loan approval (rejected, accepted, processing)
 
     // LoanApp constructor
+
+    public LoanApp(Account user, String loanType, int personalInfoCredit, String maritalStatus, String education, boolean housingStatus, int workInfoCredit, int workingYear, long annualIncome, int totalCredit, String loanStatus) {
+        this.user = user;
+        this.loanType = loanType;
+        this.personalInfoCredit = personalInfoCredit;
+        this.maritalStatus = maritalStatus;
+        this.education = education;
+        this.housingStatus = housingStatus;
+        this.workInfoCredit = workInfoCredit;
+        this.workingYear = workingYear;
+        this.annualIncome = annualIncome;
+        this.totalCredit = totalCredit;
+        this.loanStatus = loanStatus;
+    }
+
     public LoanApp() {
         
     }
+    
+    
+
     
     // Get private field user (type: Account)
     public Account getUser() {
@@ -56,7 +74,7 @@ public class LoanApp {
      * Returns the customer's marital status.
      * @return A list representing the customer's marital status.
      */
-    public List<String> getMaritalStatus() {
+    public String getMaritalStatus() {
         return maritalStatus;
     }
 
@@ -64,7 +82,7 @@ public class LoanApp {
      *  Sets the marital status for the customer.
      * @param maritalStatus Sets the marital status for the customer.
      */
-    public void setMaritalStatus(List<String> maritalStatus) {
+    public void setMaritalStatus(String maritalStatus) {
         this.maritalStatus = maritalStatus;
     }
 

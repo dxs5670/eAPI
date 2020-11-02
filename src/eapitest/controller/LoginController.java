@@ -84,7 +84,7 @@ public class LoginController {
     private List<Account> accountList;
     
     
-    // Used for writing a list of students to a .csv file in the project directory
+    // Used for writing a list of accounts to a .csv file in the project directory
     private void writeToCSV(List<Account> accountList) throws IOException {
         try ( 
             // create a writer for the indicated CSV file path
@@ -243,6 +243,7 @@ public class LoginController {
                 Scene homeViewScene = new Scene(homeView);
                 HomeController controller = loader.getController();
                 controller.updatePage(usernameFieldExisting.getText());
+                controller.setActiveUser(new Account(usernameFieldExisting.getText()));
                 Stage homeWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 homeWindow.setScene(homeViewScene);
                 homeWindow.show();

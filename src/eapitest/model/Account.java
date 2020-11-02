@@ -39,6 +39,12 @@ public class Account {
         this.gender = gender;
         this.occupation = occupation;
     }
+
+    public Account(String userName) {
+        this.userName = userName;
+    }
+    
+    
     
     
     

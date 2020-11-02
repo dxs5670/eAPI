@@ -1,22 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="252.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eapitest.controller.AccountController">
-   <children>
-      <Button fx:id="backButton" layoutX="24.0" layoutY="33.0" mnemonicParsing="false" onAction="#returnHome" text="Back" />
-      <Text layoutX="249.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Text layoutX="241.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name" />
-      <PasswordField fx:id="updatePasswordField" layoutX="334.0" layoutY="95.0" />
-      <Text layoutX="246.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-      <TextField fx:id="updateUsernameField" layoutX="334.0" layoutY="52.0" />
-      <PasswordField fx:id="confirmUpdatePasswordField" layoutX="334.0" layoutY="138.0" />
-      <Text layoutX="223.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password" />
-      <Button fx:id="updateButton" layoutX="356.0" layoutY="188.0" mnemonicParsing="false" onAction="#updateAccountDetails" text="Update Account " />
-   </children>
-</AnchorPane>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eapitest.controller.AccountController">
+  <tabs>
+    <Tab fx:id="editAccountTab" text="Edit Account">
+         <content>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="367.0" prefWidth="600.0">
+               <children>
+                  <Button fx:id="backButton" layoutX="24.0" layoutY="33.0" mnemonicParsing="false" onAction="#returnHome" text="Back" />
+                  <Text layoutX="249.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text layoutX="45.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name" />
+                  <PasswordField fx:id="updatePasswordField" layoutX="416.0" layoutY="85.0" />
+                  <Text layoutX="328.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+                  <TextField fx:id="updateUsernameField" layoutX="135.0" layoutY="123.0" />
+                  <PasswordField fx:id="confirmUpdatePasswordField" layoutX="416.0" layoutY="128.0" />
+                  <Text layoutX="305.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password" />
+                  <Button fx:id="updateButton" layoutX="348.0" layoutY="297.0" mnemonicParsing="false" onAction="#updateAccountDetails" text="Update Account " />
+                  <TextField fx:id="updateNameField" layoutX="135.0" layoutY="85.0" />
+                  <TextField fx:id="updateOccupationField" layoutX="133.0" layoutY="171.0" />
+                  <Text layoutX="53.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" />
+                  <Text layoutX="53.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Occupation" />
+                  <TextField fx:id="updateGenderField" layoutX="414.0" layoutY="180.0" prefHeight="25.0" prefWidth="151.0" promptText="Other (Specify)">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </TextField>
+                  <Text layoutX="357.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" />
+               </children>
+            </AnchorPane>
+         </content>
+    </Tab>
+    <Tab fx:id="loanAppsTab" text="Loan Applications">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="loanAppsTable" layoutX="53.0" layoutY="52.0" prefHeight="273.0" prefWidth="494.0">
+                    <columns>
+                      <TableColumn fx:id="loanTypeColumn" editable="false" prefWidth="105.0" text="Loan Type" />
+                        <TableColumn fx:id="loanIncomeColumn" editable="false" prefWidth="149.0" text="Annual Income" />
+                      <TableColumn fx:id="loanStatusColumn" editable="false" minWidth="2.0" prefWidth="239.0" text="Loan Status" />
+                    </columns>
+                  </TableView>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab fx:id="loansTab" text="Loans">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="loanType" layoutX="273.0" layoutY="27.0" text="Loan Type" />
+                  <Label fx:id="loanCreatedDate" layoutX="32.0" layoutY="77.0" text="Loan Created Date" />
+                  <Label fx:id="loanPaymentDate" layoutX="32.0" layoutY="120.0" text="Loan Payment Due Date" />
+                  <Label fx:id="loanPaymentMinimum" layoutX="31.0" layoutY="169.0" text="Loan Payment Minimum" />
+                  <Label fx:id="loanTotal" layoutX="34.0" layoutY="214.0" text="Loan Total Amount" />
+                  <Label fx:id="loanBalance" layoutX="34.0" layoutY="261.0" text="Loan Balance" />
+                  <Button fx:id="lastLoan" layoutX="225.0" layoutY="326.0" mnemonicParsing="false" onAction="#lastLoan" text="Last" />
+                  <Button fx:id="nextLoan" layoutX="357.0" layoutY="326.0" mnemonicParsing="false" onAction="#nextLoan" text="Next" />
+                  <TextField fx:id="loanIndexField" layoutX="281.0" layoutY="313.0" prefHeight="25.0" prefWidth="54.0" />
+                  <Label layoutX="287.0" layoutY="347.0" text="Loan Index">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+         </content>
+      </Tab>
+  </tabs>
+</TabPane>

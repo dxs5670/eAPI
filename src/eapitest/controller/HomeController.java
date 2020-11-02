@@ -35,7 +35,7 @@ public class HomeController {
     @FXML
     private Text activeUserName;
     
-    private Account user;
+    private Account activeUser;
 
     
 
@@ -50,7 +50,9 @@ public class HomeController {
         AccountController aController = accountLoader.getController();
         Stage accountWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
         accountWindow.setScene(accountUI);
-        //aController.setActiveUser(activeUser);
+        aController.setActiveUser(activeUser);
+        aController.getLoans();
+        aController.getLoanApps();
         aController.setPreviousScene(((Node) event.getSource()).getScene());
         accountWindow.show();
     }
@@ -76,7 +78,7 @@ public class HomeController {
         LoanAppController laController = loanAppLoader.getController();
         Stage loanAppWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
         loanAppWindow.setScene(loanAppUI);
-        //laController.setActiveUser(activeUser);
+        laController.setActiveUser(activeUser);
         laController.setPreviousScene(((Node) event.getSource()).getScene());
         loanAppWindow.show();
     }
@@ -104,6 +106,18 @@ public class HomeController {
     public void updatePage(String username) {
         activeUserName.setText(username);
     }
+    
+    //get & se active user
+
+    public Account getActiveUser() {
+        return activeUser;
+    }
+
+    public void setActiveUser(Account activeUser) {
+        this.activeUser = activeUser;
+    }
+    
+    
     
     
 

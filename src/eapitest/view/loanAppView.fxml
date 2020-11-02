@@ -8,14 +8,21 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eapitest.controller.LoanAppController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="581.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eapitest.controller.LoanAppController">
    <children>
-      <Label layoutX="27.0" layoutY="94.0" text="Occupation" />
-      <TextField fx:id="occupationField" layoutX="110.0" layoutY="89.0" />
-      <Button fx:id="submitButton" layoutX="126.0" layoutY="435.0" mnemonicParsing="false" onAction="#createApplication" text="Submit Application" />
+      <Button fx:id="submitButton" layoutX="129.0" layoutY="515.0" mnemonicParsing="false" onAction="#createApplication" text="Submit Application" />
       <Button fx:id="backButton" layoutX="22.0" layoutY="25.0" mnemonicParsing="false" onAction="#returnHome" text="Back" />
-      <Label layoutX="27.0" layoutY="141.0" text="Marital Status" />
-      <MenuButton layoutX="110.0" layoutY="137.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Choose...">
+      <Label layoutX="39.0" layoutY="141.0" text="Marital Status:" />
+      <MenuButton fx:id="loanTypeMenu" layoutX="129.0" layoutY="87.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Choose...">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#setLoanPersonal" text="Personal" />
+            <MenuItem mnemonicParsing="false" onAction="#setLoanBusiness" text="Business" />
+            <MenuItem mnemonicParsing="false" onAction="#setLoanAuto" text="Automotive" />
+            <MenuItem mnemonicParsing="false" onAction="#setLoanRenovation" text="Renovation" />
+            <MenuItem mnemonicParsing="false" onAction="#setLoanProject" text="Project" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="maritalStatusMenu" layoutX="129.0" layoutY="137.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Choose...">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#setStatusSingle" text="Single" />
             <MenuItem mnemonicParsing="false" onAction="#setStatusEngaged" text="Engaged" />
@@ -24,7 +31,7 @@
             <MenuItem mnemonicParsing="false" onAction="#setStatusWidowed" text="Widowed" />
         </items>
       </MenuButton>
-      <MenuButton layoutX="110.0" layoutY="182.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Choose...">
+      <MenuButton fx:id="educationMenu" layoutX="129.0" layoutY="188.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Choose...">
          <items>
             <MenuItem mnemonicParsing="false" onAction="#setEducationStatus1" text="Some High School" />
             <MenuItem mnemonicParsing="false" onAction="#setEducationStatus2" text="GED or High School Diploma" />
@@ -35,11 +42,14 @@
             <MenuItem mnemonicParsing="false" onAction="#setEducationStatus7" text="Doctorate" />
          </items>
       </MenuButton>
-      <Label layoutX="27.0" layoutY="186.0" text="Education" />
-      <Label layoutX="27.0" layoutY="232.0" text="Are you a home owner?" />
-      <RadioButton fx:id="yesButton" layoutX="110.0" layoutY="270.0" mnemonicParsing="false" onAction="#setOwnsHomeTrue" text="Yes" />
-      <RadioButton fx:id="noButton" layoutX="221.0" layoutY="270.0" mnemonicParsing="false" onAction="#setOwnsHomeFalse" text="No" />
-      <TextField fx:id="incomeField" layoutX="110.0" layoutY="338.0" prefHeight="25.0" prefWidth="149.0" />
-      <Label layoutX="27.0" layoutY="308.0" text="Average Annual Income:" />
+      <Label layoutX="59.0" layoutY="192.0" text="Education:" />
+      <Label layoutX="33.0" layoutY="242.0" text="Are you a home owner?" />
+      <RadioButton fx:id="yesButton" layoutX="110.0" layoutY="286.0" mnemonicParsing="false" onAction="#setOwnsHomeTrue" text="Yes" />
+      <RadioButton fx:id="noButton" layoutX="221.0" layoutY="286.0" mnemonicParsing="false" onAction="#setOwnsHomeFalse" text="No" />
+      <TextField fx:id="incomeField" layoutX="110.0" layoutY="372.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label layoutX="32.0" layoutY="334.0" text="Annual Income:" />
+      <Label layoutX="37.0" layoutY="421.0" text="Income Year:" />
+      <TextField fx:id="workingYearField" layoutX="110.0" layoutY="457.0" />
+      <Label layoutX="57.0" layoutY="93.0" text="Loan Type:" />
    </children>
 </AnchorPane>
